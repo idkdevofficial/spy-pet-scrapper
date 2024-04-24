@@ -79,10 +79,10 @@
         <a href="faq.html">FAQ</a>
         /
         <a
-                href="https://github.com/idkdevofficial/spy-pet-scrapper"
+                href="https://github.com/someonestuff/spy-pet-scrapper"
                 target="_blank"
         >View on GitHub (Fork)</a>
-
+        <a href="faq.html">FAQ</a>
         /
         <a
                 href="https://github.com/Nitrrine/have-i-been-scraped-by-spy-pet"
@@ -159,13 +159,16 @@
                 persists.</i
             >
         </div>
+        <button class="copy-button" id="copy-ban-commands-btn">Copy Ban Commands</button>
+        <button class="copy-button" id="export-docx-btn">Export as .docx</button>
+        <button class="copy-button" id="export-csv-btn">Export as CSV</button>
     </div>
 </main>
 <script>
     // Configurable vars
     const API_URL = "https://kickthespy.pet"
 
-    const REPO_USER = "idkdevofficial"
+    const REPO_USER = "someonestuff"
     const REPO_NAME = "spy-pet-scrapper"
 
     // Sample ban command data (you can add more)
@@ -221,11 +224,47 @@
         const banCommandList = document.getElementById("banCommandList");
         banCommands.forEach(command => {
             const listItem = document.createElement("li");
-            const banCommand = `/ban <@ID> Delete any: don't delete any Reason: ${command.reason} (Bot: ${command.bot})`;
+            const banCommand = `/ban <@${command.bot}> Delete any: don't delete any Reason: ${command.reason} (Bot: ${command.bot})`;
             listItem.textContent = banCommand;
             banCommandList.appendChild(listItem);
         });
+
+        // Event listeners for copy and export buttons
+        document.getElementById("copy-ban-commands-btn").addEventListener("click", copyBanCommands);
+        document.getElementById("export-docx-btn").addEventListener("click", exportToDocx);
+        document.getElementById("export-csv-btn").addEventListener("click", exportToCsv);
     });
+
+    // Function to copy ban commands to clipboard
+    function copyBanCommands() {
+        const banCommandsText = Array.from(document.querySelectorAll("#banCommandList li")).map(li => li.textContent).join("\n");
+        navigator.clipboard.writeText(banCommandsText).then(() => {
+            alert("Ban commands copied to clipboard!");
+        }).catch(err => {
+            console.error("Error copying to clipboard:", err);
+            alert("Error copying to clipboard. Please try again.");
+        });
+    }
+
+    // Function to export ban commands as .docx
+    function exportToDocx() {
+        const banCommandsText = Array.from(document.querySelectorAll("#banCommandList li")).map(li => li.textContent).join("\n");
+        const blob = new Blob([banCommandsText], {type: "text/plain;charset=utf-8"});
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "ban_commands.docx";
+        link.click();
+    }
+
+    // Function to export ban commands as CSV
+    function exportToCsv() {
+        const banCommandsText = Array.from(document.querySelectorAll("#banCommandList li")).map(li => li.textContent).join("\n");
+        const blob = new Blob([banCommandsText], {type: "text/csv;charset=utf-8"});
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "ban_commands.csv";
+        link.click();
+    }
 
     // When we click button, main process begins here
     document
