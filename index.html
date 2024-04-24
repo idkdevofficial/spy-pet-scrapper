@@ -1,161 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title>Have I Been Scraped by Spy.pet?</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta
-      name="description"
-      content="A simple tool, made for normal users & discord server administrators to check if there's a scraper bot on your server." />
+            name="description"
+            content="A simple tool, made for normal users & discord server administrators to check if there's a scraper bot on your server."/>
     <meta
-      name="keywords"
-      content="spy.pet, spy.pet checker, spy.pet lookup, spy.pet bot finder, tool, utility, lookup, free, open source" />
-    <meta name="author" content="Nitrrine" />
-    <meta name="theme-color" content="#0070F3" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css" />
+            name="keywords"
+            content="spy.pet, spy.pet checker, spy.pet lookup, spy.pet bot finder, tool, utility, lookup, free, open source"/>
+    <meta name="author" content="Nitrrine"/>
+    <meta name="theme-color" content="#0070F3"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css"/>
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css" />
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"/>
     <style>
-      .form {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .result {
-        background: #0f0f0f;
-        padding: 1em;
-        border-radius: 1em;
-        margin-top: 0.5em;
-        animation: 200ms fade-in;
-      }
-
-      @keyframes fade-in {
-        0% {
-          opacity: 0;
+        .form {
+            display: flex;
+            flex-direction: column;
         }
-        100% {
-          opacity: 1;
+
+        .result {
+            background: #0f0f0f;
+            padding: 1em;
+            border-radius: 1em;
+            margin-top: 0.5em;
+            animation: 200ms fade-in;
         }
-      }
 
-      .result-good {
-        background: #1b5a16;
-      }
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
 
-      .result-bad {
-        background: #5a1616;
-      }
+            100% {
+                opacity: 1;
+            }
+        }
 
-      .hide {
-        display: none;
-      }
+        .result-good {
+            background: #1b5a16;
+        }
+
+        .result-bad {
+            background: #5a1616;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .copy-button {
+            background-color: #4caf50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+        .copy-button:hover {
+            background-color: #45a049;
+        }
     </style>
-  </head>
-  <body>
-    <header>
-      <h1>Have I Been Scraped by Spy.pet?</h1>
-      <nav>
+</head>
+<body>
+<header>
+    <h1>Have I Been Scraped by Spy.pet?</h1>
+    <nav>
         <a href="faq.html">FAQ</a>
         /
         <a
-          href="https://github.com/someonestuff/spy-pet-scrapper"
-          target="_blank"
-          >View on GitHub (Fork)</a
-        >
-          <a href="faq.html">FAQ</a>
+                href="https://github.com/someonestuff/spy-pet-scrapper"
+                target="_blank"
+        >View on GitHub (Fork)</a>
+        <a href="faq.html">FAQ</a>
         /
         <a
-          href="https://github.com/Nitrrine/have-i-been-scraped-by-spy-pet"
-          target="_blank"
-          >View on GitHub (Original)</a
-        >
-      </nav>
-    </header>
-    <main>
-      <p>
+                href="https://github.com/Nitrrine/have-i-been-scraped-by-spy-pet"
+                target="_blank"
+        >View on GitHub (Original)</a>
+    </nav>
+</header>
+<main>
+    <p>
         Checks if server contains a data scraper bot,
         <a
-          href="https://www.youtube.com/watch?v=ktxbXlF6UQE"
-          target="_blank"
-          rel="noopener noreferer"
-          >more info</a
+                href="https://www.youtube.com/watch?v=ktxbXlF6UQE"
+                target="_blank"
+                rel="noopener noreferer"
+        >more info</a
         >.
-      </p>
-      <div class="form">
+    </p>
+    <div class="form">
         <label for="provider"
-          >Provider:
-          <span title="Specifies what should we use for getting data"
+        >Provider:
+            <span title="Specifies what should we use for getting data"
             >(?)</span
-          ></label
+        ></label
         >
         <select id="provider">
-          <option value="default" selected>kickthespy.pet (default)</option>
+            <option value="default" selected>kickthespy.pet (default)</option>
         </select>
         <label for="serverId">Server ID or invite link:</label>
         <input
-          type="text"
-          placeholder="Enter Discord Server ID or invite link"
-          id="serverId" />
+                type="text"
+                placeholder="Enter Discord Server ID or invite link"
+                id="serverId"/>
         <button id="check-btn">Check</button>
         <div class="result result-good hide" id="good-result">
-          <p>Everything is OK, Spy.pet is not tracking this server!</p>
-          <i
+            <p>Everything is OK, Spy.pet is not tracking this server!</p>
+            <i
             >This service is powered by kickthespy.pet, big thanks to them :3
-But be careful, new accounts of spy.pet create every second to join random servers, so yeah be careful :)</i
-          >
+                But be careful, new accounts of spy.pet create every second to join random servers, so yeah be careful :)</i
+            >
         </div>
         <div class="result result-bad hide" id="bad-result">
-          <p>
-            Everything is NOT ok, Spy.pet is tracking this server, using bot
-            under name <strong id="botName"></strong>.
-          </p>
-          <details open>
-            <summary>More info</summary>
-            <div style="display: flex; gap: 0.5em">
-              <img
-                src=""
-                alt="bot's pfp"
-                title="Bot's Avatar"
-                id="botAvatar"
-                width="64"
-                height="64" />
-              <div>
-                <p>Bot's Username: <code id="botUsername"></code></p>
-                <p>Bot's ID: <code id="botId"></code></p>
-              </div>
-            </div>
-          </details>
-          <i
+            <p>
+                Everything is NOT ok, Spy.pet is tracking this server, using bot
+                under name <strong id="botName"></strong>.
+            </p>
+            <details open>
+                <summary>More info</summary>
+                <div style="display: flex; gap: 0.5em">
+                    <img
+                            src=""
+                            alt="bot's pfp"
+                            title="Bot's Avatar"
+                            id="botAvatar"
+                            width="64"
+                            height="64"/>
+                    <div>
+                        <p>Bot's Username: <code id="botUsername"></code></p>
+                        <p>Bot's ID: <code id="botId"></code></p>
+                        <!-- Add Ban Command List -->
+                        <ul id="banCommandList"></ul>
+                    </div>
+                </div>
+            </details>
+            <i
             >This service is powered by kickthespy.pet, big thanks to them :3</i
-          >
+            >
         </div>
         <div class="result result-bad hide" id="error-result">
-          <p>An error occurred!</p>
-          <pre id="error"></pre>
-          <i
+            <p>An error occurred!</p>
+            <pre id="error"></pre>
+            <i
             >Please create an issue
-            <a href="#" id="createIssueLink" target="_blank">here</a> if problem
-            persists.</i
-          >
+                <a href="#" id="createIssueLink" target="_blank">here</a> if problem
+                persists.</i
+            >
         </div>
-      </div>
-    </main>
-    <script>
-      // Configurable vars
-      const API_URL = "https://kickthespy.pet"
+    </div>
+</main>
+<script>
+    // Configurable vars
+    const API_URL = "https://kickthespy.pet"
 
-      const REPO_USER = "someonestuff"
-      const REPO_NAME = "spy-pet-scrapper"
+    const REPO_USER = "someonestuff"
+    const REPO_NAME = "spy-pet-scrapper"
 
-      // Misc
-      const goodResult = document.getElementById("good-result")
-      const badResult = document.getElementById("bad-result")
-      const errorResult = document.getElementById("error-result")
+    // Sample ban command data (you can add more)
+    const banCommands = [
+        {
+            bot: "Discord",
+            reason: "spy.pet account"
+        },
+        // Add more ban commands here
+    ];
 
-      // Functions
-      function showBadResult(botName, botUsername, botId, botAvatar) {
+    // Misc
+    const goodResult = document.getElementById("good-result")
+    const badResult = document.getElementById("bad-result")
+    const errorResult = document.getElementById("error-result")
+
+    // Functions
+    function showBadResult(botName, botUsername, botId, botAvatar) {
         document.getElementById("botName").innerText = botName
         document.getElementById("botUsername").innerText = botUsername
         document.getElementById("botId").innerText = botId
@@ -164,86 +192,95 @@ But be careful, new accounts of spy.pet create every second to join random serve
         goodResult.classList.add("hide")
         badResult.classList.remove("hide")
         errorResult.classList.add("hide")
-      }
+    }
 
-      function showGoodResult() {
+    function showGoodResult() {
         goodResult.classList.remove("hide")
         badResult.classList.add("hide")
         errorResult.classList.add("hide")
-      }
+    }
 
-      function showError(error) {
+    function showError(error) {
         document.getElementById("error").innerText = error
 
         goodResult.classList.add("hide")
         badResult.classList.add("hide")
         errorResult.classList.remove("hide")
-      }
+    }
 
-      // Do something on page load
-      document.addEventListener("DOMContentLoaded", () => {
+    // Do something on page load
+    document.addEventListener("DOMContentLoaded", () => {
         document
-          .getElementById("createIssueLink")
-          .setAttribute(
-            "href",
-            `https://github.com/${REPO_USER}/${REPO_NAME}/issues`
-          )
-      })
+                .getElementById("createIssueLink")
+                .setAttribute(
+                        "href",
+                        `https://github.com/${REPO_USER}/${REPO_NAME}/issues`
+                );
 
-      // When we click button, main process begins here
-      document
-        .getElementById("check-btn")
-        .addEventListener("click", function (event) {
-          const serverId = document.getElementById("serverId").value
-          const provider = document.getElementById("provider").value
+        // Populate the ban command list
+        const banCommandList = document.getElementById("banCommandList");
+        banCommands.forEach(command => {
+            const listItem = document.createElement("li");
+            const banCommand = `/ban <@ID> Delete any: don't delete any Reason: ${command.reason} (Bot: ${command.bot})`;
+            listItem.textContent = banCommand;
+            banCommandList.appendChild(listItem);
+        });
+    });
 
-          if (parseInt(serverId)) {
-            // This is minimum Discord server ID length
-            if (serverId.length < 18) {
-              return
-            }
+    // When we click button, main process begins here
+    document
+            .getElementById("check-btn")
+            .addEventListener("click", function (event) {
+                const serverId = document.getElementById("serverId").value
+                const provider = document.getElementById("provider").value
 
-            // Checks what provider is being used, currently we have only one but maybe new in future?
-            if (provider == "default") {
-              fetch(`${API_URL}/getBot?id=${serverId}`)
-                .then((response) => response.json())
-                .then((data) => {
-                  // If response contains bot ID == server is being tracked
-                  if (data.id) {
-                    showBadResult(
-                      data.global_name,
-                      data.username,
-                      data.id,
-                      data.avatarURL
-                    )
-                  } else {
-                    showGoodResult()
-                  }
-                })
-                .catch((error) => showError(error))
-            }
-          } else {
-            const splitInviteLink = serverId.split("/")
-            const inviteLink = splitInviteLink[splitInviteLink.length - 1]
+                if (parseInt(serverId)) {
+                    // This is minimum Discord server ID length
+                    if (serverId.length < 18) {
+                        return
+                    }
 
-            fetch(`${API_URL}/byInv?code=/${inviteLink}`)
-              .then((response) => response.json())
-              .then((data) => {
-                // If response contains bot ID == server is being tracked
-                if (data.id) {
-                  showBadResult(
-                    data.global_name,
-                    data.username,
-                    data.id,
-                    data.avatarURL
-                  )
+                    // Checks what provider is being used, currently we have only one but maybe new in future?
+                    if (provider == "default") {
+                        fetch(`${API_URL}/getBot?id=${serverId}`)
+                                .then((response) => response.json())
+                                .then((data) => {
+                                    // If response contains bot ID == server is being tracked
+                                    if (data.id) {
+                                        showBadResult(
+                                                data.global_name,
+                                                data.username,
+                                                data.id,
+                                                data.avatarURL
+                                        )
+                                    } else {
+                                        showGoodResult()
+                                    }
+                                })
+                                .catch((error) => showError(error))
+                    }
                 } else {
-                  showGoodResult()
+                    const splitInviteLink = serverId.split("/")
+                    const inviteLink = splitInviteLink[splitInviteLink.length - 1]
+
+                    fetch(`${API_URL}/byInv?code=/${inviteLink}`)
+                            .then((response) => response.json())
+                            .then((data) => {
+                                // If response contains bot ID == server is being tracked
+                                if (data.id) {
+                                    showBadResult(
+                                            data.global_name,
+                                            data.username,
+                                            data.id,
+                                            data.avatarURL
+                                    )
+                                } else {
+                                    showGoodResult()
+                                }
+                            })
+                            .catch((error) => showError(error))
                 }
-              })
-              .catch((error) => showError(error))
-          }
-        })
-    </script>
-  </body>
+            })
+</script>
+</body>
 </html>
